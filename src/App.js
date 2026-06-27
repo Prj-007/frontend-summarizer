@@ -6,6 +6,8 @@ import { Circles } from 'react-loader-spinner';
 import axios from 'axios';
 import './App.css';
 
+const API_BASE_URL = (process.env.REACT_APP_API_URL || 'http://localhost:8080').replace(/\/$/, '');
+
 function App() {
   const [file, setFile] = useState(null);
   const [docId, setDocId] = useState('');
@@ -16,10 +18,15 @@ function App() {
 
 
   const upload = async () => {
+    if (!file) {
+      toast.error("Please choose a file first");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("file", file);
     try {
-    const res = await axios.post('http://localhost:8080/api/document/upload', formData);
+    const res = await axios.post(`${API_BASE_URL}/api/document/upload`, formData);
     setDocId(res.data);
     toast.success(" File uploaded successfully!");
  
@@ -37,7 +44,7 @@ function App() {
   }
     try {
        setLoading(true);
-    const res = await axios.post(`http://localhost:8080/api/document/extract-text/${docId}`);
+    const res = await axios.post(`${API_BASE_URL}/api/document/extract-text/${docId}`);
     setExtractedText(res.data);
     toast.success("🔍 Text extracted successfully!");
      
@@ -57,7 +64,7 @@ function App() {
     try {
       setLoading(true);
        setExtractedText('');
-    const res = await axios.post(`http://localhost:8080/api/document/summarize/${docId}`);
+    const res = await axios.post(`${API_BASE_URL}/api/document/summarize/${docId}`);
     setSummary(res.data);
      toast.success(" Summary generated!");
  
@@ -77,8 +84,8 @@ function App() {
       <input type="file" onChange={e => setFile(e.target.files[0])} />
       <div style={{ display: 'flex',justifyContent: 'center',marginTop: '20px' , gap: '20px' }}>
       <button onClick={upload}>Upload</button>
-      <button onClick={extract} Extract={!docId}>Extract Text</button>
-      <button onClick={summarize} Summarize={!docId}>Summarize</button>
+      <button onClick={extract} disabled={!docId}>Extract Text</button>
+      <button onClick={summarize} disabled={!docId}>Summarize</button>
       </div>
 
       {loading ? (
@@ -110,4 +117,3 @@ function App() {
 }
 
 export default App;
-
