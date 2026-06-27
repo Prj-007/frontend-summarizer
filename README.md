@@ -2,6 +2,13 @@
 
 React frontend for the document summarizer app.
 
+## Live Deployment
+
+- Frontend app: https://frontend-summarizer.onrender.com
+- Backend API: https://backend-summarizer-latest.onrender.com
+- Frontend repository: https://github.com/Prj-007/frontend-summarizer
+- Backend repository: https://github.com/Prj-007/backend-summarizer-latest
+
 ## Local Run
 
 ```bash
