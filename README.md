@@ -1,27 +1,26 @@
-# Frontend Summarizer
+# DocSum AI — Document Summarizer
 
-React frontend for the document summarizer app.
+AI-powered document summarization platform built with React & Spring Boot.
 
-## Live Deployment
+## Live
 
-- Frontend app: https://frontend-summarizer.onrender.com
-- Backend API: https://backend-summarizer-latest.onrender.com
-- Frontend repository: https://github.com/Prj-007/frontend-summarizer
-- Backend repository: https://github.com/Prj-007/backend-summarizer-latest
+- **App:** https://frontend-summarizer-gh.vercel.app
+- **Backend API:** https://backend-summarizer-latest-vztg.onrender.com
 
-## Local Run
+## Repositories
+
+- Frontend: https://github.com/Prj-007/frontend-summarizer
+- Backend: https://github.com/Prj-007/backend-summarizer-latest
+
+## Local Development
 
 ```bash
 npm install
 REACT_APP_API_URL=http://localhost:8080 npm start
 ```
 
-## Production Build
-
-```bash
-REACT_APP_API_URL=https://your-backend-url.onrender.com npm run build
-```
-
 ## Environment Variables
 
-- `REACT_APP_API_URL`: backend API base URL.
+| Variable | Description |
+|----------|-------------|
+| `REACT_APP_API_URL` | Backend API base URL |
